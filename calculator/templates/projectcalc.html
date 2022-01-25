@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title'%}Preço Projeto{% endblock %}
+
+{% block 'body' %}
+    <h1>Para saber o valor do seu projeto:</h1><br>
+
+    <form method = "POST" action = {% url 'project' %}>{% csrf_token %}
+        <p><strong>Quanto ganha por hora ?</strong></p>
+        <input type = "text" name = "projectValue"><br>
+
+        <p><strong>Quantas horas irá trabalhar?</strong></p>
+        <input type = "text" name = "projectHour"><br>
+
+        <p><strong>Quantos dias irão durar o projeto?</strong></p>
+        <input type = "text" name = "projectDays"><br>
+
+        <p><strong>Quanto de lucro adicional (em %)?</strong></p>
+        <input type = "text" name = "projectProfit"><br>
+
+        <input type = "submit" value = "Calcular Projeto">
+    </form>
+
+    <div>
+        <p><strong>Resultados:</strong></p>
+
+        {% if request.method == "POST" %}
+            <p>O preço do seu projeto é de <strong>R$ {{gain}}</strong></p>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href = {% url 'homepage' %}><button>Menu Principal</button></a>
+    </div>
+{% endblock %}

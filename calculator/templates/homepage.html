@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel = "stylesheet" href = {% static 'calculator/css/homepage.css' %}>
+{% endblock %}
+
+{% block 'title' %}Calculadora de Preços - Freelancer{% endblock %}
+
+{% block 'body' %}
+    <p><strong>Você sabe como calcular sua hora trabalhada ou o preço do seu projeto?</strong></p>
+    <p>Vamos lá! Ajudamos você! Escolha uma das calculadoras a seguir:</p>
+
+    <div>
+        <a href = {% url 'hour' %}><button>Hora Trabalhada</button></a>
+        <a href = {% url 'project' %}><button>Valor do Projeto</button></a>
+    </div>
+{% endblock %}

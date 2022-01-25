@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'title' %}Preço Hora{% endblock %}
+
+{% block 'body' %}
+    <h1>Para saber o preço de sua hora:</h1>
+    
+    <form method = "POST" action = {% url 'hour' %}>{% csrf_token %}
+        <h2>Preencha os campos abaixo, assim poderemos calcular!</h2>
+
+        <p><strong>Digite o salário mensal desejado (em R$):</strong></p>
+        <input type = "text" name = "salary">
+
+        <p><strong>Coloque quantas horas por dia irá trabalhar:</strong></p>
+        <input type = "text" name = "hoursDay"><br>
+
+        <p><strong>Coloque quantos dias no mês irá programar!</strong></p>
+        <input type = "text" name = "monthDays"><br>
+
+        <input type = "submit" value = "Calcular Hora"><br><br>
+    </form>
+
+    <div>
+        <p><strong>Resultados:</strong></p>
+
+        {% if request.method == "POST" %}
+            <p>O preço da sua hora é de <strong>R$ {{hourPrice}}</strong></p>
+        {% endif %}
+    </div>
+
+    <div>
+        <a href = {% url 'homepage' %}><button>Menu Principal</button></a>
+    </div>
+{% endblock %}
